@@ -9,6 +9,13 @@ interface MapOptions {
   zoom?: number;
 }
 
+interface Mappable {
+  location: {
+    lat: number;
+    lng: number;
+  };
+}
+
 const loader = new Loader({
   apiKey: apiKey,
   version: 'weekly',
@@ -29,5 +36,13 @@ export class Map {
         { ...defaultOptions, ...options }
       );
     });
+  }
+
+  addMarker(entity: Mappable, zoomToMarker: boolean = false): void {
+    new google.maps.Marker({
+      map: this.map,
+      position: entity.location,
+    });
+    zoomToMarker && this.map.panTo(entity.location);
   }
 }
