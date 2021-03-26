@@ -9,7 +9,7 @@ interface MapOptions {
   zoom?: number;
 }
 
-interface Mappable {
+export interface Mappable {
   location: {
     lat: number;
     lng: number;
